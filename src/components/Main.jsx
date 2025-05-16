@@ -7,9 +7,11 @@ function Main() {
 
     function handleSubmit(event){
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
+        const formEl = event.currentTarget;
+        const formData = new FormData(formEl);
         const newIngredient = formData.get("ingredient");
         setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+        formEl.reset();
     }
     return(
         <main>
@@ -20,7 +22,7 @@ function Main() {
                 aria-label="Add ingredient"
                 name="ingredient"
                 />
-                <button>Add ingredient</button>
+                <button type="submit">Add ingredient</button>
             </form>
             <ul>
                 {ingredientsListItems}
